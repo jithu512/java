@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 15px;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .sidebar button {
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            color: #4CAF50;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .sidebar button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .sidebar button:focus {
+            outline: none;
+        }
+        .container {
+            margin-left: 200px; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button.calculate {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.calculate:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <button onclick="location.href='index.html'">Change Color</button>
+        <button onclick="location.href='calculator.html'">Calculator</button>
+        <button onclick="location.href='age.html'">Age</button>
+        <button onclick="location.href='arraysum.html'">Array Sum</button>
+        <button onclick="location.href='primenumber.html'">Prime Number</button>
+        <button onclick="location.href='reversestring.html'">Reverse String</button>
+    </div>
+    <div class="container">
+        <h2>Student Grade Calculator</h2>
+        <form id="studentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br>
+
+            <label for="sub1">Subject 1:</label>
+            <input type="number" id="sub1" required min="0" max="100"><br>
+            <label for="sub2">Subject 2:</label>
+            <input type="number" id="sub2" required min="0" max="100"><br>
+            <label for="sub3">Subject 3:</label>
+            <input type="number" id="sub3" required min="0" max="100"><br>
+            <label for="sub4">Subject 4:</label>
+            <input type="number" id="sub4" required min="0" max="100"><br>
+            <label for="sub5">Subject 5:</label>
+            <input type="number" id="sub5" required min="0" max="100"><br>
+
+            <button type="button" class="calculate" onclick="calculateGrade()">Calculate Grade</button>
+        </form>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            const name = document.getElementById("name").value.trim();
+            const sub1 = Number(document.getElementById("sub1").value);
+            const sub2 = Number(document.getElementById("sub2").value);
+            const sub3 = Number(document.getElementById("sub3").value);
+            const sub4 = Number(document.getElementById("sub4").value);
+            const sub5 = Number(document.getElementById("sub5").value);
+
+            // Clear previous output
+            document.getElementById("output").textContent = "";
+
+            // Check if name is empty
+            if (name === "") {
+                document.getElementById("output").textContent = "Please enter your name.";
+                return;
+            }
+
+            // Check if marks are valid numbers
+            if (isNaN(sub1) || isNaN(sub2) || isNaN(sub3) || isNaN(sub4) || isNaN(sub5)) {
+                document.getElementById("output").textContent = "Please enter valid marks (0-100).";
+                return;
+            }
+
+            // Calculate total and average marks
+            const totalMarks = sub1 + sub2 + sub3 + sub4 + sub5;
+            const averageMarks = totalMarks / 5;
+
+            // Determine grade
+            let grade;
+            if (averageMarks >= 90) {
+                grade = "A+";
+            } else if (averageMarks >= 80) {
+                grade = "A";
+            } else if (averageMarks >= 70) {
+                grade = "B";
+            } else if (averageMarks >= 60) {
+                grade = "C";
+            } else if (averageMarks >= 50) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            // Display result
+            document.getElementById("output").textContent = ${name}, your grade is ${grade}.;
+        }
+    </script>
+</body>
+</html>

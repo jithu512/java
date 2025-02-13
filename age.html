@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Group Identifier</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 15px;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .sidebar button {
+            padding: 15px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            color: #4CAF50;
+            text-align: left;
+            width: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .sidebar button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .sidebar button:focus {
+            outline: none;
+        }
+
+        .main-content {
+            margin-left: 220px; /* Prevents overlap with sidebar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(100% - 220px); /* Ensures content stays centered */
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <button onclick="location.href='index.html'">Change color</button>
+
+        <button onclick="location.href='calculator.html'">Calculator</button>
+        <button onclick="location.href='grade.html'">Grade</button>
+        <button onclick="location.href='arraysum.html'">Array Sum</button>
+        <button onclick="location.href='primenumber.html'">Prime Number</button>
+        <button onclick="location.href='reversestring.html'">Reverse String</button>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Age Group Identifier</h1>
+            <label for="ageInput">Enter your age:</label><br>
+            <input type="number" id="ageInput" min="0" value="25"><br>
+            <button onclick="determineAgeGroup()">Determine Age Group</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function determineAgeGroup() {
+            const age = parseInt(document.getElementById("ageInput").value);
+            const resultElement = document.getElementById("result");
+
+            if (isNaN(age) || age < 0) {
+                resultElement.textContent = "Invalid input. Please enter a valid age.";
+                return;
+            }
+
+            let ageGroup;
+            if (age < 13) {
+                ageGroup = "Child";
+            } else if (age < 20) {
+                ageGroup = "Teenager";
+            } else if (age < 60) {
+                ageGroup = "Adult";
+            } else {
+                ageGroup = "Senior Citizen";
+            }
+
+            resultElement.textContent = "You are a " + ageGroup + ".";
+        }
+    </script>
+</body>
+</html>
